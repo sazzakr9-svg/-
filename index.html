@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>고명 - 숙성돼지고기 전문점 | 가맹문의</title>
+  <meta name="description" content="숙성돼지고기 전문점 고명. 매출이 나게 설계된 프랜차이즈. 가맹 상담 신청." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      color: #2C1810;
+      background: #FAF6F0;
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ===== COLOR VARIABLES ===== */
+    :root {
+      --brown-dark: #2C1810;
+      --brown: #4A2C1A;
+      --brown-mid: #6B4226;
+      --brown-light: #8B6342;
+      --beige-dark: #D4C4A8;
+      --beige: #E8DCC8;
+      --beige-light: #FAF6F0;
+      --cream: #FFF8ED;
+      --gold: #C9A96E;
+      --gold-light: #E0C98A;
+      --white: #FFFFFF;
+      --serif: 'Noto Serif KR', serif;
+      --sans: 'Noto Sans KR', sans-serif;
+    }
+
+    /* ===== UTILITY ===== */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .serif { font-family: var(--serif); }
+    .text-center { text-align: center; }
+    .text-gold { color: var(--gold); }
+
+    /* ===== SCROLL ANIMATIONS ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-60px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal-left.active { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(60px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal-right.active { opacity: 1; transform: translateX(0); }
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal-scale.active { opacity: 1; transform: scale(1); }
+    .delay-1 { transition-delay: 0.15s; }
+    .delay-2 { transition-delay: 0.3s; }
+    .delay-3 { transition-delay: 0.45s; }
+    .delay-4 { transition-delay: 0.6s; }
+
+    /* ===== GNB (Navigation) ===== */
+    .gnb {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      background: rgba(44, 24, 16, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 169, 110, 0.15);
+      transition: all 0.3s ease;
+    }
+    .gnb.scrolled {
+      background: rgba(44, 24, 16, 0.97);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+    .gnb-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px; height: 70px;
+    }
+    .gnb-logo img {
+      height: 40px;
+      filter: brightness(0) invert(1);
+    }
+    .gnb-logo-text {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 4px;
+    }
+    .gnb-menu { display: flex; gap: 32px; }
+    .gnb-menu a {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.88rem;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      transition: color 0.3s;
+      position: relative;
+    }
+    .gnb-menu a::after {
+      content: '';
+      position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1.5px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+    .gnb-menu a:hover { color: #fff; }
+    .gnb-menu a:hover::after { width: 100%; }
+    .gnb-cta {
+      background: var(--gold);
+      color: var(--brown-dark);
+      padding: 10px 24px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      transition: all 0.3s;
+    }
+    .gnb-cta:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+    }
+    /* Mobile menu */
+    .gnb-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .gnb-toggle span {
+      width: 24px; height: 2px;
+      background: var(--gold);
+      transition: all 0.3s;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 700px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--brown-dark);
+    }
+    .hero-video-wrap {
+      position: absolute; inset: 0;
+      z-index: 1;
+    }
+    .hero-video-wrap video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .hero-placeholder {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, #1a0e08 0%, #3d1f0e 40%, #2C1810 100%);
+      z-index: 2;
+    }
+    .hero-placeholder::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="80" fill="none" stroke="rgba(201,169,110,0.05)" stroke-width="0.5"/></svg>') center/400px repeat;
+      opacity: 0.5;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(44,24,16,0.4) 0%, rgba(44,24,16,0.6) 50%, rgba(44,24,16,0.9) 100%);
+      z-index: 3;
+    }
+    .hero-content {
+      position: relative; z-index: 4;
+      text-align: center;
+      color: #fff;
+      padding: 0 24px;
+      max-width: 800px;
+    }
+    .hero-content .sub-tag {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--gold);
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      border: 1px solid rgba(201,169,110,0.4);
+      padding: 8px 20px;
+    }
+    .hero-content h1 {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.5;
+      margin-bottom: 24px;
+      color: #fff;
+    }
+    .hero-content h1 .highlight {
+      color: var(--gold);
+    }
+    .hero-content .hero-sub {
+      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+      color: rgba(255,255,255,0.7);
+      line-height: 1.9;
+      margin-bottom: 12px;
+      font-weight: 300;
+    }
+    .hero-content .hero-bottom-line {
+      font-family: var(--serif);
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      color: var(--gold-light);
+      margin-top: 32px;
+      font-weight: 400;
+      letter-spacing: 1px;
+    }
+    .hero-scroll-indicator {
+      position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+      z-index: 4;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      animation: scrollBounce 2s ease-in-out infinite;
+    }
+    .hero-scroll-indicator .scroll-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(180deg, rgba(201,169,110,0.6), transparent);
+    }
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ===== SECTION COMMON ===== */
+    .section { padding: 120px 0; }
+    .section-dark { background: var(--brown-dark); color: #fff; }
+    .section-cream { background: var(--cream); }
+    .section-beige { background: var(--beige-light); }
+    .section-brown { background: var(--brown); color: #fff; }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--gold);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .section-dark .section-tag { color: var(--gold); }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    .section-dark .section-title { color: #fff; }
+
+    .section-desc {
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+      color: var(--brown-light);
+      line-height: 1.8;
+      max-width: 700px;
+      font-weight: 300;
+    }
+    .section-dark .section-desc { color: rgba(255,255,255,0.6); }
+
+    .section-highlight {
+      font-family: var(--serif);
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      color: var(--gold);
+      font-weight: 600;
+      margin-top: 24px;
+      padding: 20px 0;
+      border-top: 1px solid rgba(201,169,110,0.2);
+      border-bottom: 1px solid rgba(201,169,110,0.2);
+    }
+
+    /* ===== SECTION 1 : PROBLEM ===== */
+    .problem-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 48px 0;
+    }
+    .problem-card {
+      background: rgba(201,169,110,0.06);
+      border: 1px solid rgba(201,169,110,0.12);
+      border-radius: 8px;
+      padding: 40px 28px;
+      text-align: center;
+      transition: all 0.4s ease;
+    }
+    .problem-card:hover {
+      background: rgba(201,169,110,0.12);
+      transform: translateY(-4px);
+    }
+    .problem-card .icon {
+      font-size: 2.2rem;
+      margin-bottom: 16px;
+    }
+    .problem-card h4 {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    .problem-card p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+    }
+    .problem-bottom {
+      font-family: var(--serif);
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      color: rgba(255,255,255,0.85);
+      text-align: center;
+      margin-top: 40px;
+      font-weight: 600;
+    }
+    .problem-bottom span { color: var(--gold); }
+
+    /* ===== SECTION 2 : SOLUTION ===== */
+    .solution-box {
+      background: var(--brown-dark);
+      border-radius: 12px;
+      padding: 60px 48px;
+      margin-top: 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .solution-box::before {
+      content: '';
+      position: absolute; inset: 0;
+      border: 1px solid rgba(201,169,110,0.15);
+      border-radius: 12px;
+      pointer-events: none;
+    }
+    .solution-box h3 {
+      font-family: var(--serif);
+      font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+      color: #fff;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      font-weight: 700;
+    }
+    .solution-box .accent {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .solution-box p {
+      color: rgba(255,255,255,0.6);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+    .solution-keyline {
+      display: inline-block;
+      margin-top: 32px;
+      padding: 16px 36px;
+      border: 1px solid var(--gold);
+      font-family: var(--serif);
+      font-size: clamp(1rem, 1.8vw, 1.25rem);
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    /* ===== SECTION 3 : DIFFERENTIATORS ===== */
+    .diff-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      margin-top: 48px;
+    }
+    .diff-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 44px 36px;
+      border: 1px solid rgba(107, 66, 38, 0.08);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .diff-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 4px; height: 0;
+      background: var(--gold);
+      transition: height 0.5s ease;
+    }
+    .diff-card:hover::before { height: 100%; }
+    .diff-card:hover {
+      box-shadow: 0 12px 40px rgba(44,24,16,0.08);
+      transform: translateY(-4px);
+    }
+    .diff-card .num {
+      font-family: var(--serif);
+      font-size: 0.85rem;
+      color: var(--gold);
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+    .diff-card h4 {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--brown-dark);
+      margin-bottom: 12px;
+    }
+    .diff-card p {
+      font-size: 0.95rem;
+      color: var(--brown-light);
+      line-height: 1.7;
+    }
+
+    /* ===== MENU SECTION ===== */
+    .menu-section { background: var(--brown-dark); color: #fff; overflow: hidden; }
+    .menu-carousel-wrap {
+      position: relative;
+      margin: 48px auto 0;
+      max-width: 600px;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+    .menu-carousel-track {
+      display: flex;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .menu-slide {
+      min-width: 100%;
+      aspect-ratio: 4/3;
+      background: var(--brown-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .menu-slide img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .menu-slide-placeholder {
+      color: rgba(255,255,255,0.3);
+      font-size: 0.9rem;
+    }
+    .menu-slide-title {
+      font-family: var(--serif);
+      color: var(--gold);
+      font-size: 1.1rem;
+    }
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    .carousel-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .carousel-dot.active {
+      background: var(--gold);
+      width: 24px;
+      border-radius: 4px;
+    }
+
+    /* Side dishes sub-section */
+    .side-dishes {
+      margin-top: 80px;
+      padding-top: 60px;
+      border-top: 1px solid rgba(201,169,110,0.15);
+    }
+    .side-dishes h3 {
+      font-family: var(--serif);
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      text-align: center;
+      margin-bottom: 40px;
+      color: #fff;
+    }
+    .side-dishes h3 span { color: var(--gold); }
+    .sides-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .side-item {
+      text-align: center;
+      padding: 28px 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(201,169,110,0.1);
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+    .side-item:hover {
+      background: rgba(201,169,110,0.08);
+      transform: translateY(-3px);
+    }
+    .side-item .side-icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+    .side-item h5 {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--gold-light);
+      margin-bottom: 6px;
+    }
+    .side-item p {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ===== SECTION 4 : REVENUE PIE CHART ===== */
+    .revenue-section { position: relative; }
+    .revenue-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      margin-top: 48px;
+    }
+    .pie-chart-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .pie-chart {
+      position: relative;
+      width: 320px; height: 320px;
+    }
+    .pie-chart svg { transform: rotate(-90deg); }
+    .pie-chart-center {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    .pie-chart-center .amount {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--gold);
+    }
+    .pie-chart-center .label {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 4px;
+    }
+    .pie-legend {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      max-width: 380px;
+    }
+    .pie-legend-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.9rem;
+    }
+    .pie-legend-item .left {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .pie-legend-item .dot {
+      width: 12px; height: 12px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+    .pie-legend-item .name { color: rgba(255,255,255,0.75); }
+    .pie-legend-item .value {
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .revenue-text h3 {
+      font-family: var(--serif);
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      color: #fff;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .revenue-text h3 span { color: var(--gold); }
+
+    .revenue-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 32px 0;
+    }
+    .revenue-stat {
+      text-align: center;
+      padding: 24px 12px;
+      background: rgba(201,169,110,0.08);
+      border: 1px solid rgba(201,169,110,0.15);
+      border-radius: 8px;
+    }
+    .revenue-stat .stat-val {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .revenue-stat .stat-label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+    }
+    .revenue-bottom {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.8;
+      margin-top: 20px;
+    }
+
+    /* ===== SECTION 5 : REAL CASES ===== */
+    .cases-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin: 48px 0;
+    }
+    .case-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 36px 24px;
+      text-align: center;
+      border: 1px solid rgba(107,66,38,0.06);
+      transition: all 0.4s;
+    }
+    .case-card:hover {
+      box-shadow: 0 8px 30px rgba(44,24,16,0.08);
+      transform: translateY(-4px);
+    }
+    .case-card .case-val {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 900;
+      color: var(--brown-dark);
+      margin-bottom: 8px;
+    }
+    .case-card .case-val span { color: var(--gold); }
+    .case-card .case-label {
+      font-size: 0.88rem;
+      color: var(--brown-light);
+      margin-bottom: 4px;
+    }
+    .case-card .case-note {
+      font-size: 0.78rem;
+      color: var(--beige-dark);
+    }
+
+    /* ===== SECTION 6 : FRANCHISE SYSTEM ===== */
+    .system-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .system-card {
+      background: rgba(201,169,110,0.05);
+      border: 1px solid rgba(201,169,110,0.12);
+      border-radius: 12px;
+      padding: 40px 24px;
+      text-align: center;
+      transition: all 0.4s;
+    }
+    .system-card:hover {
+      background: rgba(201,169,110,0.12);
+      transform: translateY(-4px);
+    }
+    .system-card .sys-icon {
+      width: 56px; height: 56px;
+      margin: 0 auto 20px;
+      background: rgba(201,169,110,0.12);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+    }
+    .system-card h4 {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .system-card p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+    }
+
+    /* ===== SECTION 7 : COST TABLE ===== */
+    .cost-table-wrap {
+      margin-top: 48px;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid rgba(107,66,38,0.1);
+    }
+    .cost-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .cost-table thead th {
+      background: var(--brown-dark);
+      color: var(--gold);
+      font-family: var(--serif);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 18px 28px;
+      text-align: left;
+      letter-spacing: 1px;
+    }
+    .cost-table tbody td {
+      padding: 20px 28px;
+      font-size: 0.95rem;
+      border-bottom: 1px solid rgba(107,66,38,0.06);
+      vertical-align: middle;
+    }
+    .cost-table tbody tr { background: #fff; transition: background 0.3s; }
+    .cost-table tbody tr:hover { background: var(--cream); }
+    .cost-table tbody tr:nth-child(even) { background: var(--beige-light); }
+    .cost-table tbody tr:nth-child(even):hover { background: var(--beige); }
+    .cost-table .item-name {
+      font-weight: 700;
+      color: var(--brown-dark);
+    }
+    .cost-table .cost-val {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--brown-dark);
+    }
+    .cost-table .cost-note {
+      font-size: 0.82rem;
+      color: var(--brown-light);
+    }
+    .cost-table .badge-free {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--brown-dark);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-left: 8px;
+    }
+    .cost-table .badge-discount {
+      display: inline-block;
+      background: #E74C3C;
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-left: 8px;
+    }
+    .cost-table .original-price {
+      text-decoration: line-through;
+      color: var(--beige-dark);
+      font-size: 0.9rem;
+      margin-right: 8px;
+    }
+
+    /* ===== SECTION 8 : TARGET ===== */
+    .target-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 48px;
+    }
+    .target-card {
+      background: rgba(201,169,110,0.06);
+      border: 1px solid rgba(201,169,110,0.12);
+      border-radius: 12px;
+      padding: 48px 32px;
+      text-align: center;
+      transition: all 0.4s;
+    }
+    .target-card:hover {
+      background: rgba(201,169,110,0.15);
+      transform: translateY(-4px);
+    }
+    .target-card .target-icon {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    .target-card h4 {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .target-card p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+    }
+
+    /* ===== SECTION 9 : CLOSING ===== */
+    .closing-section {
+      text-align: center;
+      padding: 120px 0;
+      background: linear-gradient(180deg, var(--beige-light) 0%, var(--cream) 100%);
+    }
+    .closing-section .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      margin-bottom: 28px;
+    }
+    .closing-section .closing-desc {
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      color: var(--brown-light);
+      line-height: 2;
+      max-width: 700px;
+      margin: 0 auto 36px;
+    }
+    .closing-cta-btn {
+      display: inline-block;
+      background: var(--brown-dark);
+      color: var(--gold);
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 18px 48px;
+      border-radius: 6px;
+      letter-spacing: 2px;
+      transition: all 0.3s;
+    }
+    .closing-cta-btn:hover {
+      background: var(--brown);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(44,24,16,0.2);
+    }
+
+    /* ===== SECTION 10 : DB FORM ===== */
+    .form-section {
+      padding: 100px 0 160px;
+      background: var(--brown-dark);
+      color: #fff;
+      text-align: center;
+    }
+    .form-title {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .form-title .bold { font-weight: 900; }
+    .form-title .light { font-weight: 300; font-size: 0.85em; }
+    .form-subtitle {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 48px;
+    }
+    .form-subtitle2 {
+      font-size: 0.85rem;
+      color: var(--gold);
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      max-width: 640px;
+      margin: 0 auto 24px;
+    }
+    .form-grid .full { grid-column: 1 / -1; }
+    .form-input {
+      width: 100%;
+      padding: 16px 20px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(201,169,110,0.2);
+      border-radius: 6px;
+      color: #fff;
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      transition: all 0.3s;
+      outline: none;
+    }
+    .form-input::placeholder { color: rgba(255,255,255,0.3); }
+    .form-input:focus {
+      border-color: var(--gold);
+      background: rgba(255,255,255,0.1);
+    }
+    .form-input.select { appearance: none; cursor: pointer; }
+    .form-submit {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 18px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--brown-dark);
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      letter-spacing: 2px;
+      transition: all 0.3s;
+    }
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(201,169,110,0.4);
+    }
+    .form-notice {
+      max-width: 640px;
+      margin: 16px auto 0;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+      text-align: left;
+    }
+    .form-bottom-line {
+      margin-top: 48px;
+      font-family: var(--serif);
+      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+      color: var(--gold);
+      font-weight: 400;
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== FLOATING BAR ===== */
+    .floating-bar {
+      position: fixed;
+      bottom: 0; left: 0; width: 100%;
+      z-index: 999;
+      background: rgba(44, 24, 16, 0.97);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(201,169,110,0.2);
+      padding: 12px 0;
+      transform: translateY(100%);
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .floating-bar.visible { transform: translateY(0); }
+    .floating-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .floating-text {
+      flex: 0 0 auto;
+      font-family: var(--serif);
+      font-size: 0.95rem;
+      color: var(--gold);
+      white-space: nowrap;
+      font-weight: 600;
+    }
+    .floating-form {
+      flex: 1;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .floating-form input {
+      flex: 1;
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(201,169,110,0.2);
+      border-radius: 4px;
+      color: #fff;
+      font-size: 0.88rem;
+      outline: none;
+      font-family: var(--sans);
+    }
+    .floating-form input::placeholder { color: rgba(255,255,255,0.3); }
+    .floating-form input:focus { border-color: var(--gold); }
+    .floating-form button {
+      flex-shrink: 0;
+      padding: 10px 28px;
+      background: var(--gold);
+      color: var(--brown-dark);
+      border: none;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      font-family: var(--sans);
+      transition: all 0.3s;
+    }
+    .floating-form button:hover { background: var(--gold-light); }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: #1a0e08;
+      color: rgba(255,255,255,0.35);
+      padding: 48px 0 100px;
+      font-size: 0.82rem;
+      line-height: 1.8;
+      text-align: center;
+    }
+    .footer strong { color: var(--gold); font-weight: 600; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .revenue-grid { grid-template-columns: 1fr; }
+      .pie-chart-wrap { margin-bottom: 40px; }
+      .diff-grid { grid-template-columns: 1fr; }
+      .cases-grid { grid-template-columns: repeat(2, 1fr); }
+      .system-grid { grid-template-columns: repeat(2, 1fr); }
+      .sides-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .gnb-menu { display: none; }
+      .gnb-cta { display: none; }
+      .gnb-toggle { display: flex; }
+      .gnb-menu.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 70px; left: 0; right: 0;
+        background: rgba(44,24,16,0.98);
+        padding: 24px;
+        gap: 20px;
+        border-bottom: 1px solid rgba(201,169,110,0.15);
+      }
+      .gnb-cta-mobile {
+        display: block;
+        text-align: center;
+        background: var(--gold);
+        color: var(--brown-dark);
+        padding: 12px;
+        border-radius: 4px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        margin-top: 8px;
+      }
+      .gnb-inner { height: 60px; }
+      .section { padding: 80px 0; }
+      .problem-cards { grid-template-columns: 1fr; }
+      .target-cards { grid-template-columns: 1fr; }
+      .cases-grid { grid-template-columns: 1fr; }
+      .system-grid { grid-template-columns: 1fr; }
+      .sides-grid { grid-template-columns: repeat(2, 1fr); }
+      .form-grid { grid-template-columns: 1fr; }
+      .revenue-stats { grid-template-columns: 1fr; }
+      .pie-chart { width: 260px; height: 260px; }
+      .cost-table thead th { padding: 14px 16px; font-size: 0.85rem; }
+      .cost-table tbody td { padding: 14px 16px; font-size: 0.85rem; }
+
+      .floating-inner { flex-direction: column; gap: 8px; }
+      .floating-text { font-size: 0.85rem; }
+      .floating-form { width: 100%; }
+      .floating-form input { min-width: 0; }
+    }
+
+    @media (max-width: 480px) {
+      .sides-grid { grid-template-columns: 1fr; }
+      .cost-table-wrap { overflow-x: auto; }
+      .cost-table { min-width: 520px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== GNB ===== -->
+  <nav class="gnb" id="gnb">
+    <div class="gnb-inner">
+      <a href="#hero" class="gnb-logo">
+        <img src="logo.png" alt="고명" onerror="this.style.display='none'; document.getElementById('logoText').style.display='block';" />
+        <span class="gnb-logo-text" id="logoText" style="display:none;">고명</span>
+      </a>
+      <ul class="gnb-menu" id="gnbMenu">
+        <li><a href="#problem">브랜드 소개</a></li>
+        <li><a href="#menu">메뉴</a></li>
+        <li><a href="#revenue">수익 구조</a></li>
+        <li><a href="#system">가맹 시스템</a></li>
+        <li><a href="#cost">창업 비용</a></li>
+        <li><a href="#contact">상담 신청</a></li>
+      </ul>
+      <a href="#contact" class="gnb-cta">가맹 상담 신청</a>
+      <div class="gnb-toggle" id="gnbToggle" onclick="document.getElementById('gnbMenu').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== 0. HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-video-wrap">
+      <!-- 추후 영상 교체: src="hero-video.mp4" -->
+      <video autoplay muted loop playsinline poster="">
+        <source src="hero-video.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="hero-placeholder"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="sub-tag">숙성돼지고기 전문점</div>
+      <h1>
+        외식업은<br />
+        <span class="highlight">잘 되는 집만</span> 계속 잘 됩니다.
+      </h1>
+      <p class="hero-sub">
+        문제는 대부분 '운영'이 아니라 <strong style="color:rgba(255,255,255,0.9)">'처음 설계'</strong>에서 결정됩니다.
+      </p>
+      <p class="hero-bottom-line">
+        그래서 저희는 맛집이 아니라<br />
+        <strong>'잘되게 만들어진 매장'</strong>을 만듭니다.
+      </p>
+    </div>
+    <div class="hero-scroll-indicator">
+      SCROLL
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ===== 1. PROBLEM ===== -->
+  <section class="section section-dark" id="problem">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-tag">PROBLEM</span>
+        <h2 class="section-title">고깃집, 정말 많습니다.<br />근데 왜 <span style="color:var(--gold)">망하는 매장</span>이 더 많을까요?</h2>
+      </div>
+      <div class="problem-cards">
+        <div class="problem-card reveal delay-1">
+          <div class="icon">&#x1F356;</div>
+          <h4>맛 비슷함</h4>
+          <p>어디서든 비슷한 맛, 비슷한 품질. 고객이 굳이 다시 찾을 이유가 없습니다.</p>
+        </div>
+        <div class="problem-card reveal delay-2">
+          <div class="icon">&#x1F3E0;</div>
+          <h4>인테리어 비슷함</h4>
+          <p>비슷한 공간, 비슷한 분위기. 브랜드가 기억에 남지 않습니다.</p>
+        </div>
+        <div class="problem-card reveal delay-3">
+          <div class="icon">&#x1F4B8;</div>
+          <h4>가격 경쟁 심함</h4>
+          <p>결국 가격만으로 승부하게 되고, 마진은 점점 줄어듭니다.</p>
+        </div>
+      </div>
+      <p class="problem-bottom reveal">결국 <span>차이가 없는 시장</span>입니다.</p>
+    </div>
+  </section>
+
+  <!-- ===== 2. SOLUTION ===== -->
+  <section class="section section-cream" id="solution">
+    <div class="container text-center">
+      <div class="reveal">
+        <span class="section-tag">SOLUTION</span>
+        <h2 class="section-title" style="color:var(--brown-dark)">그래서 <span style="color:var(--gold)">고명</span>은<br />다르게 시작했습니다.</h2>
+        <p class="section-desc" style="margin:0 auto;">한 끼를 완성하는 브랜드라는 기준으로 매장을 설계합니다.</p>
+      </div>
+      <div class="solution-box reveal">
+        <h3>공간, 메뉴, 동선, 운영까지<br /><span class="accent">처음부터 매출이 나게 설계합니다.</span></h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3. DIFFERENTIATORS ===== -->
+  <section class="section section-beige" id="diff">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-tag">DIFFERENCE</span>
+        <h2 class="section-title" style="color:var(--brown-dark)">고명의 <span style="color:var(--gold)">차별화</span></h2>
+      </div>
+      <div class="diff-grid">
+        <div class="diff-card reveal reveal-left delay-1">
+          <div class="num">01</div>
+          <h4>공간 설계</h4>
+          <p>인테리어가 아니라 매출 구조를 만듭니다. 좌석 배치, 동선, 조명까지 매출에 최적화된 공간을 설계합니다.</p>
+        </div>
+        <div class="diff-card reveal reveal-right delay-1">
+          <div class="num">02</div>
+          <h4>메뉴 구조</h4>
+          <p>고객이 고민 없이 주문하게 만듭니다. 선택지는 줄이고, 객단가는 자연스럽게 올립니다.</p>
+        </div>
+        <div class="diff-card reveal reveal-left delay-2">
+          <div class="num">03</div>
+          <h4>동선 설계</h4>
+          <p>회전율이 자연스럽게 올라갑니다. 주문에서 퇴식까지, 효율적인 동선이 매출을 만듭니다.</p>
+        </div>
+        <div class="diff-card reveal reveal-right delay-2">
+          <div class="num">04</div>
+          <h4>브랜드 힘</h4>
+          <p>"고민 끝, 고명" — 고객에게 선택의 이유를 제공합니다. 기억되는 브랜드가 재방문을 만듭니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MENU SECTION ===== -->
+  <section class="section menu-section" id="menu">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-tag">MENU</span>
+        <h2 class="section-title">한 끼를 완성하는<br /><span style="color:var(--gold)">고명의 메뉴</span></h2>
+        <p class="section-desc" style="margin:0 auto; color:rgba(255,255,255,0.6);">숙성돼지고기 전문점 고명의 시그니처 메뉴를 소개합니다.</p>
+      </div>
+
+      <!-- Carousel -->
+      <div class="menu-carousel-wrap reveal">
+        <div class="menu-carousel-track" id="carouselTrack">
+          <div class="menu-slide">
+            <img src="menu-1.jpg" alt="메뉴 1" onerror="this.style.display='none'; this.parentElement.querySelector('.menu-slide-placeholder').style.display='block'; this.parentElement.querySelector('.menu-slide-title').style.display='block';" />
+            <span class="menu-slide-placeholder" style="display:none;">메뉴 이미지 1</span>
+            <span class="menu-slide-title" style="display:none;">숙성 삼겹살</span>
+          </div>
+          <div class="menu-slide">
+            <img src="menu-2.jpg" alt="메뉴 2" onerror="this.style.display='none'; this.parentElement.querySelector('.menu-slide-placeholder').style.display='block'; this.parentElement.querySelector('.menu-slide-title').style.display='block';" />
+            <span class="menu-slide-placeholder" style="display:none;">메뉴 이미지 2</span>
+            <span class="menu-slide-title" style="display:none;">숙성 목살</span>
+          </div>
+          <div class="menu-slide">
+            <img src="menu-3.jpg" alt="메뉴 3" onerror="this.style.display='none'; this.parentElement.querySelector('.menu-slide-placeholder').style.display='block'; this.parentElement.querySelector('.menu-slide-title').style.display='block';" />
+            <span class="menu-slide-placeholder" style="display:none;">메뉴 이미지 3</span>
+            <span class="menu-slide-title" style="display:none;">특수부위 모둠</span>
+          </div>
+          <div class="menu-slide">
+            <img src="menu-4.jpg" alt="메뉴 4" onerror="this.style.display='none'; this.parentElement.querySelector('.menu-slide-placeholder').style.display='block'; this.parentElement.querySelector('.menu-slide-title').style.display='block';" />
+            <span class="menu-slide-placeholder" style="display:none;">메뉴 이미지 4</span>
+            <span class="menu-slide-title" style="display:none;">고명 세트</span>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-dots" id="carouselDots">
+        <div class="carousel-dot active" data-index="0"></div>
+        <div class="carousel-dot" data-index="1"></div>
+        <div class="carousel-dot" data-index="2"></div>
+        <div class="carousel-dot" data-index="3"></div>
+      </div>
+
+      <!-- Side dishes -->
+      <div class="side-dishes reveal">
+        <h3>고명만의 특별한 <span>밑반찬과 디저트</span></h3>
+        <div class="sides-grid">
+          <div class="side-item reveal delay-1">
+            <div class="side-icon">&#x1F96C;</div>
+            <h5>직접 담근 겉절이</h5>
+            <p>매일 신선하게 준비</p>
+          </div>
+          <div class="side-item reveal delay-2">
+            <div class="side-icon">&#x1F35C;</div>
+            <h5>된장찌개</h5>
+            <p>깊은 맛의 마무리</p>
+          </div>
+          <div class="side-item reveal delay-3">
+            <div class="side-icon">&#x1F9C1;</div>
+            <h5>시그니처 디저트</h5>
+            <p>식사 후 특별한 한 입</p>
+          </div>
+          <div class="side-item reveal delay-4">
+            <div class="side-icon">&#x1F963;</div>
+            <h5>계절 밑반찬</h5>
+            <p>매 시즌 새로운 구성</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4. REVENUE ===== -->
+  <section class="section section-dark" id="revenue">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-tag">REVENUE</span>
+        <h2 class="section-title">외식업은 감성이 아니라<br /><span style="color:var(--gold)">숫자</span>입니다.</h2>
+      </div>
+      <div class="revenue-grid">
+        <div class="pie-chart-wrap reveal reveal-left">
+          <div class="pie-chart" id="pieChart">
+            <svg viewBox="0 0 200 200" width="100%" height="100%">
+              <circle cx="100" cy="100" r="80" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="40" />
+              <!-- Pie segments will be drawn by JS -->
+            </svg>
+            <div class="pie-chart-center">
+              <div class="amount">4,000<span style="font-size:0.5em">만원</span></div>
+              <div class="label">월 매출</div>
+            </div>
+          </div>
+          <div class="pie-legend" id="pieLegend"></div>
+        </div>
+        <div class="revenue-text reveal reveal-right">
+          <h3><span>객단가</span> / <span>회전율</span> / <span>마진율</span><br />이 3개를 설계하면 매출은 따라옵니다.</h3>
+          <div class="revenue-stats">
+            <div class="revenue-stat">
+              <div class="stat-val">객단가</div>
+              <div class="stat-label">자연스럽게 올리는 구조</div>
+            </div>
+            <div class="revenue-stat">
+              <div class="stat-val">회전율</div>
+              <div class="stat-label">동선 설계로 극대화</div>
+            </div>
+            <div class="revenue-stat">
+              <div class="stat-val">마진율</div>
+              <div class="stat-label">본사 직접 발주 시스템</div>
+            </div>
+          </div>
+          <p class="revenue-bottom">고명은 단순히 맛있는 집이 아니라<br /><strong style="color:var(--gold)">수익이 나게 만들어진 구조</strong>입니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5. REAL CASES ===== -->
+  <section class="section section-cream" id="cases">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-tag">REAL RESULTS</span>
+        <h2 class="section-title" style="color:var(--brown-dark)">현재 운영 매장 기준</h2>
+        <p class="section-desc" style="margin:0 auto;">이건 운이 아니라 <strong style="color:var(--brown-dark)">구조</strong>입니다.</p>
+      </div>
+      <div class="cases-grid">
+        <div class="case-card reveal delay-1">
+          <div class="case-val"><span>4,000</span>만원</div>
+          <div class="case-label">평균 월매출</div>
+          <div class="case-note">20평 기준</div>
+        </div>
+        <div class="case-card reveal delay-2">
+          <div class="case-val"><span>3.5</span>회</div>
+          <div class="case-label">피크 시간 회전율</div>
+          <div class="case-note">런치 / 디너 기준</div>
+        </div>
+        <div class="case-card reveal delay-3">
+          <div class="case-val"><span>72</span>%</div>
+          <div class="case-label">재방문율</div>
+          <div class="case-note">3개월 내 재방문 기준</div>
+        </div>
+        <div class="case-card reveal delay-4">
+          <div class="case-val"><span>6</span>시간</div>
+          <div class="case-label">하루 운영 시간</div>
+          <div class="case-note">주 6일 운영</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 6. FRANCHISE SYSTEM ===== -->
+  <section class="section section-dark" id="system">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-tag">SYSTEM</span>
+        <h2 class="section-title">초보도 가능하게 만드는 이유</h2>
+        <p class="section-desc" style="margin:0 auto;">경험이 아니라 <strong style="color:var(--gold)">시스템</strong>으로 운영됩니다.</p>
+      </div>
+      <div class="system-grid">
+        <div class="system-card reveal delay-1">
+          <div class="sys-icon">&#x1F4D6;</div>
+          <h4>오퍼레이션 매뉴얼</h4>
+          <p>오픈 전부터 운영까지 모든 과정이 표준화된 매뉴얼로 제공됩니다.</p>
+        </div>
+        <div class="system-card reveal delay-2">
+          <div class="sys-icon">&#x1F393;</div>
+          <h4>교육 시스템</h4>
+          <p>경험 없이도 가능한 체계적인 교육. 조리부터 서비스까지 완벽 지원.</p>
+        </div>
+        <div class="system-card reveal delay-3">
+          <div class="sys-icon">&#x1F680;</div>
+          <h4>오픈 지원</h4>
+          <p>상권 분석, 인테리어, 오픈 마케팅까지. 매장 오픈의 모든 과정을 함께합니다.</p>
+        </div>
+        <div class="system-card reveal delay-4">
+          <div class="sys-icon">&#x1F4E3;</div>
+          <h4>마케팅 지원</h4>
+          <p>본사 차원의 브랜드 마케팅과 지역 맞춤 마케팅을 지속 지원합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 7. COST ===== -->
+  <section class="section section-beige" id="cost">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-tag">COST</span>
+        <h2 class="section-title" style="color:var(--brown-dark)">창업 비용 안내</h2>
+        <p class="section-desc" style="margin:0 auto;">투명하게 공개합니다. 숨겨진 비용은 없습니다.</p>
+      </div>
+      <div class="cost-table-wrap reveal">
+        <table class="cost-table">
+          <thead>
+            <tr>
+              <th>항목</th>
+              <th>비용</th>
+              <th>비고</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="item-name">가맹비</td>
+              <td class="cost-val">0원 <span class="badge-free">면제</span></td>
+              <td class="cost-note">10호점까지 면제</td>
+            </tr>
+            <tr>
+              <td class="item-name">로열티</td>
+              <td class="cost-val">매출의 1%</td>
+              <td class="cost-note">업계 최저 수준</td>
+            </tr>
+            <tr>
+              <td class="item-name">교육비</td>
+              <td class="cost-val">
+                <span class="original-price">500만원</span>300만원 <span class="badge-discount">200만원 할인</span>
+              </td>
+              <td class="cost-note">10호점까지 할인 적용</td>
+            </tr>
+            <tr>
+              <td class="item-name">집기비용</td>
+              <td class="cost-val">0원 <span class="badge-free">면제</span></td>
+              <td class="cost-note">업종변경 시 0원</td>
+            </tr>
+            <tr>
+              <td class="item-name">인테리어</td>
+              <td class="cost-val">평당 140만원</td>
+              <td class="cost-note">20평 기준</td>
+            </tr>
+            <tr>
+              <td class="item-name">간판</td>
+              <td class="cost-val">300만원</td>
+              <td class="cost-note">외부 간판 포함</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 8. TARGET ===== -->
+  <section class="section section-dark" id="target">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-tag">FOR YOU</span>
+        <h2 class="section-title">이런 분들이 선택합니다</h2>
+      </div>
+      <div class="target-cards">
+        <div class="target-card reveal delay-1">
+          <div class="target-icon">&#x1F331;</div>
+          <h4>처음 창업하는 분</h4>
+          <p>경험이 없어도 괜찮습니다. 시스템이 당신을 성공으로 이끕니다.</p>
+        </div>
+        <div class="target-card reveal delay-2">
+          <div class="target-icon">&#x1F504;</div>
+          <h4>업종 변경 고민하는 분</h4>
+          <p>지금의 매장을 더 잘 되는 매장으로 바꿔드립니다.</p>
+        </div>
+        <div class="target-card reveal delay-3">
+          <div class="target-icon">&#x1F4C8;</div>
+          <h4>안정적인 매출 원하는 분</h4>
+          <p>검증된 수익 구조로 안정적인 매출을 만들어 드립니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 9. CLOSING ===== -->
+  <section class="closing-section" id="closing">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-tag" style="color:var(--brown-mid)">DECISION</span>
+        <h2 class="section-title" style="color:var(--brown-dark)">결국 중요한 건<br /><span style="color:var(--gold)">선택</span>입니다.</h2>
+        <p class="closing-desc">
+          이미 잘 되는 브랜드를 할 것인가,<br />
+          직접 시행착오를 겪을 것인가.<br /><br />
+          <strong style="color:var(--brown-dark)">고명은 이미 검증된 구조입니다.</strong><br />
+          이제 그 구조를 가져가시면 됩니다.
+        </p>
+        <a href="#contact" class="closing-cta-btn">가맹 상담 신청하기</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 10. DB FORM ===== -->
+  <section class="form-section" id="contact">
+    <div class="container">
+      <div class="reveal">
+        <p class="form-subtitle2">오늘 설명회 이후 개별 상권 분석 + 수익 구조 상담 도와드립니다.</p>
+        <p class="form-subtitle" style="margin-bottom:8px;">선착순으로 입점 지역 보호합니다.</p>
+        <h2 class="form-title">
+          <span class="bold">성공적인</span><br />
+          소자본창업<br />
+          <span class="bold">업종변경 문의</span>
+        </h2>
+        <p class="form-subtitle">가맹 10호점까지 드리는 혜택을 받아보세요!</p>
+      </div>
+
+      <form class="reveal" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" id="mainForm">
+        <div class="form-grid">
+          <input type="text" name="name" class="form-input" placeholder="이름" required />
+          <input type="tel" name="phone" class="form-input" placeholder="연락처" required />
+          <select name="type" class="form-input select">
+            <option value="" disabled selected>창업 유형 선택</option>
+            <option value="신규창업">신규 창업</option>
+            <option value="업종변경">업종 변경</option>
+            <option value="기타">기타 문의</option>
+          </select>
+          <input type="text" name="region" class="form-input" placeholder="희망 지역" />
+          <textarea name="message" class="form-input full" rows="3" placeholder="문의 사항 (선택)"></textarea>
+        </div>
+        <button type="submit" class="form-submit">가맹 상담 신청하기</button>
+        <p class="form-notice">* 입력하신 정보는 가맹 상담 목적으로만 사용되며, 개인정보처리방침에 따라 안전하게 관리됩니다.</p>
+      </form>
+
+      <p class="form-bottom-line reveal">
+        잘되는 식당은 이유가 있습니다.<br />
+        <strong>고명은 그 이유를 설계합니다.</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <p><strong>고명</strong> 숙성돼지고기 전문점</p>
+      <p>대표: OOO | 사업자등록번호: 000-00-00000</p>
+      <p>주소: 서울특별시 OO구 OO로 000</p>
+      <p>전화: 000-0000-0000 | 이메일: info@gomyung.co.kr</p>
+      <p style="margin-top:12px;">&copy; 2025 고명. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ===== FLOATING BAR ===== -->
+  <div class="floating-bar" id="floatingBar">
+    <div class="floating-inner">
+      <span class="floating-text">가맹 상담 신청</span>
+      <form class="floating-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="text" name="name" placeholder="이름" required />
+        <input type="tel" name="phone" placeholder="연락처" required />
+        <button type="submit">신청하기</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    // ===== GNB Scroll Effect =====
+    const gnb = document.getElementById('gnb');
+    window.addEventListener('scroll', () => {
+      gnb.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // ===== Scroll Reveal Animation =====
+    const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // ===== Menu Carousel =====
+    const track = document.getElementById('carouselTrack');
+    const dots = document.querySelectorAll('.carousel-dot');
+    let currentSlide = 0;
+    const totalSlides = 4;
+
+    function goToSlide(index) {
+      currentSlide = index;
+      track.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach((d, i) => d.classList.toggle('active', i === index));
+    }
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => goToSlide(parseInt(dot.dataset.index)));
+    });
+
+    // Auto-slide every 2.5 seconds
+    setInterval(() => {
+      goToSlide((currentSlide + 1) % totalSlides);
+    }, 2500);
+
+    // Touch swipe support
+    let touchStartX = 0;
+    const carouselWrap = document.querySelector('.menu-carousel-wrap');
+    carouselWrap.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+    carouselWrap.addEventListener('touchend', e => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) goToSlide((currentSlide + 1) % totalSlides);
+        else goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
+      }
+    });
+
+    // ===== PIE CHART =====
+    const pieData = [
+      { name: '순수익', value: 1450, pct: 35, color: '#C9A96E' },
+      { name: '본사 발주금액', value: 1295, pct: 32, color: '#8B6342' },
+      { name: '배달 대행비', value: 400, pct: 10, color: '#6B4226' },
+      { name: '인건비', value: 370, pct: 9, color: '#A0845C' },
+      { name: '임대료·공과금', value: 250, pct: 7, color: '#4A2C1A' },
+      { name: '기타비용', value: 240, pct: 7, color: '#3D1F0E' },
+    ];
+
+    function drawPieChart() {
+      const svg = document.querySelector('#pieChart svg');
+      const r = 80, cx = 100, cy = 100;
+      const circumference = 2 * Math.PI * r;
+      let offset = 0;
+
+      // Remove old segments
+      svg.querySelectorAll('.pie-seg').forEach(el => el.remove());
+
+      pieData.forEach((d) => {
+        const segLength = (d.pct / 100) * circumference;
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.classList.add('pie-seg');
+        circle.setAttribute('cx', cx);
+        circle.setAttribute('cy', cy);
+        circle.setAttribute('r', r);
+        circle.setAttribute('fill', 'none');
+        circle.setAttribute('stroke', d.color);
+        circle.setAttribute('stroke-width', '40');
+        circle.setAttribute('stroke-dasharray', `${segLength} ${circumference - segLength}`);
+        circle.setAttribute('stroke-dashoffset', `${-offset}`);
+        circle.style.transition = 'stroke-dasharray 1s ease, stroke-dashoffset 1s ease';
+        svg.appendChild(circle);
+        offset += segLength;
+      });
+
+      // Legend
+      const legend = document.getElementById('pieLegend');
+      legend.innerHTML = '';
+      pieData.forEach(d => {
+        legend.innerHTML += `
+          <div class="pie-legend-item">
+            <span class="left"><span class="dot" style="background:${d.color}"></span><span class="name">${d.name}</span></span>
+            <span class="value">${d.value.toLocaleString()}만원 (${d.pct}%)</span>
+          </div>`;
+      });
+    }
+    drawPieChart();
+
+    // ===== Floating Bar Show/Hide =====
+    const floatingBar = document.getElementById('floatingBar');
+    const contactSection = document.getElementById('contact');
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const windowH = window.innerHeight;
+      const contactTop = contactSection.offsetTop;
+
+      // Show after scrolling past hero, hide when contact form is visible
+      if (scrollY > windowH * 0.8 && scrollY + windowH < contactTop + 200) {
+        floatingBar.classList.add('visible');
+      } else {
+        floatingBar.classList.remove('visible');
+      }
+    });
+
+    // ===== Smooth Scroll for GNB links =====
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          const offset = 70; // GNB height
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+        // Close mobile menu
+        document.getElementById('gnbMenu').classList.remove('open');
+      });
+    });
+  </script>
+</body>
+</html>
