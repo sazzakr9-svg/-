@@ -196,16 +196,17 @@
       padding: 0 24px;
       max-width: 800px;
     }
-    .hero-content .sub-tag {
-      display: inline-block;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--gold);
-      letter-spacing: 6px;
-      text-transform: uppercase;
-      margin-bottom: 28px;
-      border: 1px solid rgba(201,169,110,0.4);
-      padding: 8px 20px;
+      /* 메인 히어로 로고 스타일 */
+    .hero-main-logo {
+      margin-bottom: 35px; /* 아래 글자와의 간격 */
+      display: flex;
+      justify-content: center;
+    }
+    .hero-main-logo img {
+      width: 150px; /* 로고 크기 - 여기서 자유롭게 조절하세요 */
+      height: auto;
+      /* 만약 로고가 검은색 파일이라면 아래 filter 주석을 해제해서 흰색으로 만드세요 */
+      /* filter: brightness(0) invert(1); */
     }
     .hero-content h1 {
       font-family: var(--serif);
@@ -1126,7 +1127,9 @@
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <div class="sub-tag">숙성돼지고기 전문점</div>
+      <div class="hero-main-logo">
+      <img src="logo.png" alt="고명 로고">
+      </div>
       <h1>
         외식업은<br />
         <span class="highlight">잘 되는 집만</span> 계속 잘 됩니다.
