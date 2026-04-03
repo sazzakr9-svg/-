@@ -185,7 +185,8 @@
     }
     .hero-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(180deg, rgba(44,24,16,0.4) 0%, rgba(44,24,16,0.6) 50%, rgba(44,24,16,0.9) 100%);
+      /* 위쪽은 반투명하게 영상을 보여주고, 75% 지점부터 배경색(rgba(44,24,16,1))으로 완전히 덮이는 그라데이션 */
+      background: linear-gradient(180deg, rgba(44,24,16,0.4) 0%, rgba(44,24,16,0.5) 60%, rgba(44,24,16,1) 85%, rgba(44,24,16,1) 100%);
       z-index: 3;
     }
     .hero-content {
@@ -213,6 +214,7 @@
       line-height: 1.5;
       margin-bottom: 24px;
       color: #fff;
+      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
     }
     .hero-content h1 .highlight {
       color: var(--gold);
@@ -1119,10 +1121,9 @@
     <div class="hero-video-wrap">
       <!-- 추후 영상 교체: src="hero-video.mp4" -->
       <video autoplay muted loop playsinline poster="">
-        <source src="hero-video.mp4" type="video/mp4" />
+        <source src="gomyung-video.mp4" type="video/mp4" />
       </video>
     </div>
-    <div class="hero-placeholder"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="sub-tag">숙성돼지고기 전문점</div>
