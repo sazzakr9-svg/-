@@ -422,7 +422,50 @@
     .review-img-item .placeholder-text {
       color: var(--brown-light); font-size: 0.72rem; text-align: center; padding: 8px;
     }
-
+    /* ===== 세트 메뉴 썸네일 & 팝업 스타일 ===== */
+    .set-thumb {
+      flex: 1;
+      position: relative;
+      cursor: pointer;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .set-thumb img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .set-thumb:hover img {
+      transform: scale(1.05);
+    }
+    .set-thumb .thumb-name {
+      background: var(--brown-dark);
+      color: var(--gold);
+      text-align: center;
+      font-size: 0.85rem;
+      padding: 8px 0;
+      font-family: var(--serif);
+      font-weight: 600;
+      z-index: 1;
+    }
+    
+    /* 팝업 모달 하단 세트 이름 스타일 */
+    .set-menu-caption {
+      position: absolute;
+      bottom: -40px;
+      width: 100%;
+      text-align: center;
+      color: var(--gold);
+      font-family: var(--serif);
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    }
     /* ===== MENU ===== */
     .menu-section { background: var(--brown-dark); color: #fff; overflow: hidden; }
     .menu-carousel-wrap {
@@ -1362,9 +1405,19 @@
             선택지는 줄이고,<br />
             객단가는 자연스럽게 올립니다.
           </p>
-          <div class="diff-card-img">
-            <img src="set-menu.jpg" alt="세트 메뉴" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-            <span class="placeholder-text" style="display:none;">세트 메뉴 구성 이미지</span>
+         <div class="diff-card-img" style="background: transparent; display: flex; gap: 8px; align-items: stretch;">
+            <div class="set-thumb" onclick="openSetMenuModal(0)">
+              <img src="menu-coupleset.jpeg" alt="고명 커플세트 - 삼겹살과 목살 2인 추천 가성비 메뉴">
+              <div class="thumb-name">커플세트</div>
+            </div>
+            <div class="set-thumb" onclick="openSetMenuModal(1)">
+              <img src="menu-specialset.jpeg" alt="고명 스페셜세트 - 특수부위와 삼겹살의 다채로운 구성">
+              <div class="thumb-name">스페셜세트</div>
+            </div>
+            <div class="set-thumb" onclick="openSetMenuModal(2)">
+              <img src="menu-familyset.jpeg" alt="고명 가족세트 - 온 가족이 넉넉하게 즐기는 푸짐한 돼지고기 메뉴">
+              <div class="thumb-name">가족세트</div>
+            </div>
           </div>
         </div>
         <div class="diff-card reveal reveal-right delay-3">
@@ -1398,29 +1451,29 @@
       <div class="menu-carousel-wrap reveal">
         <div class="menu-carousel-track" id="carouselTrack">
           <div class="menu-slide">
-            <img src="menu-samgyeop.jpg" alt="숙성 삼겹살" onerror="this.style.display='none'; this.parentElement.querySelector('.menu-slide-placeholder').style.display='block';" />
+            <img src="menu-samgyeop.jpeg" alt="숙성 삼겹살" onerror="this.style.display='none'; this.parentElement.querySelector('.menu-slide-placeholder').style.display='block';" />
             <span class="menu-slide-placeholder" style="display:none;">숙성 삼겹살</span>
             <div class="menu-slide-label">숙성 삼겹살</div>
           </div>
           <div class="menu-slide">
-            <img src="menu-moksal.jpg" alt="숙성 목살" onerror="this.style.display='none'; this.parentElement.querySelector('.menu-slide-placeholder').style.display='block';" />
+            <img src="menu-moksal.jpeg" alt="숙성 목살" onerror="this.style.display='none'; this.parentElement.querySelector('.menu-slide-placeholder').style.display='block';" />
             <span class="menu-slide-placeholder" style="display:none;">숙성 목살</span>
             <div class="menu-slide-label">숙성 목살</div>
           </div>
           <div class="menu-slide">
-            <img src="menu-hangjeong.jpg" alt="항정살" onerror="this.style.display='none'; this.parentElement.querySelector('.menu-slide-placeholder').style.display='block';" />
-            <span class="menu-slide-placeholder" style="display:none;">항정살</span>
-            <div class="menu-slide-label">항정살</div>
+            <img src="menu-hangjeong.jpeg" alt="숙성 항정살" onerror="this.style.display='none'; this.parentElement.querySelector('.menu-slide-placeholder').style.display='block';" />
+            <span class="menu-slide-placeholder" style="display:none;">숙성 항정살</span>
+            <div class="menu-slide-label">숙성 항정살</div>
           </div>
           <div class="menu-slide">
-            <img src="menu-galmaegisal.jpg" alt="갈매기살" onerror="this.style.display='none'; this.parentElement.querySelector('.menu-slide-placeholder').style.display='block';" />
-            <span class="menu-slide-placeholder" style="display:none;">갈매기살</span>
-            <div class="menu-slide-label">갈매기살</div>
+            <img src="menu-mokkeutsal.jpeg" alt="숙성 목끝살" onerror="this.style.display='none'; this.parentElement.querySelector('.menu-slide-placeholder').style.display='block';" />
+            <span class="menu-slide-placeholder" style="display:none;">숙성 목끝살</span>
+            <div class="menu-slide-label">숙성 목끝살</div>
           </div>
           <div class="menu-slide">
-            <img src="menu-set.jpg" alt="고명 세트" onerror="this.style.display='none'; this.parentElement.querySelector('.menu-slide-placeholder').style.display='block';" />
-            <span class="menu-slide-placeholder" style="display:none;">고명 세트</span>
-            <div class="menu-slide-label">고명 세트</div>
+            <img src="menu-coupleset.jpeg" alt="커플 세트" onerror="this.style.display='none'; this.parentElement.querySelector('.menu-slide-placeholder').style.display='block';" />
+            <span class="menu-slide-placeholder" style="display:none;">커플 세트</span>
+            <div class="menu-slide-label">커플 세트</div>
           </div>
         </div>
       </div>
@@ -1446,15 +1499,15 @@
           </div>
           <div class="side-item reveal delay-2">
             <div class="side-item-img">
-              <img src="tomato-dessert.jpg" alt="토마토 디저트" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+              <img src="tomato-dessert.jpeg" alt="토마토 디저트" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
               <span class="placeholder-text" style="display:none;">토마토 이미지</span>
             </div>
-            <h5>토마토 마리네이드</h5>
+            <h5>마리네이드 토마토</h5>
             <p>시그니처 디저트<br />식사 후 입안을 깔끔하게</p>
           </div>
           <div class="side-item reveal delay-3">
             <div class="side-item-img">
-              <img src="hwanghachi-dessert.jpg" alt="황하치 디저트" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+              <img src="hwanghachi-dessert.jpeg" alt="황하치 디저트" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
               <span class="placeholder-text" style="display:none;">황하치 이미지</span>
             </div>
             <h5>황하치</h5>
@@ -1889,6 +1942,17 @@
       <span class="lightbox-prev" id="lightboxPrev">&#10094;</span>
       <span class="lightbox-next" id="lightboxNext">&#10095;</span>
     </div>
+    <div class="lightbox-overlay" id="setMenuModal">
+    <div class="lightbox-content" style="flex-direction: column;">
+      <span class="lightbox-close" onclick="closeSetMenuModal()">&times;</span>
+      <div style="position: relative; display: flex; justify-content: center; align-items: center;">
+        <img src="" alt="세트 메뉴 상세 이미지" class="lightbox-img" id="setMenuModalImg">
+        <span class="lightbox-prev" onclick="changeSetMenuSlide(-1)">&#10094;</span>
+        <span class="lightbox-next" onclick="changeSetMenuSlide(1)">&#10095;</span>
+        <div class="set-menu-caption" id="setMenuModalName"></div>
+      </div>
+    </div>
+  </div>
   </div>
   <!-- ===== JAVASCRIPT ===== -->
   <script>
@@ -2147,6 +2211,55 @@
         }
         document.getElementById('gnbMenu').classList.remove('open');
       });
+    });
+    // ===== 세트 메뉴 클릭 팝업 슬라이드 로직 =====
+    const setMenuData = [
+      { name: '커플세트', img: 'menu-coupleset.jpeg', alt: '고명 커플세트 - 삼겹살과 목살 2인 추천 가성비 메뉴' },
+      { name: '스페셜세트', img: 'menu-specialset.jpeg', alt: '고명 스페셜세트 - 특수부위와 삼겹살의 다채로운 구성' },
+      { name: '가족세트', img: 'menu-familyset.jpeg', alt: '고명 가족세트 - 온 가족이 넉넉하게 즐기는 푸짐한 돼지고기 메뉴' }
+    ];
+    
+    let currentSetMenuIndex = 0;
+    const setMenuModal = document.getElementById('setMenuModal');
+    const setMenuModalImg = document.getElementById('setMenuModalImg');
+    const setMenuModalName = document.getElementById('setMenuModalName');
+
+    function openSetMenuModal(index) {
+      currentSetMenuIndex = index;
+      updateSetMenuModalView();
+      setMenuModal.classList.add('visible');
+    }
+
+    function closeSetMenuModal() {
+      setMenuModal.classList.remove('visible');
+    }
+
+    function changeSetMenuSlide(step) {
+      currentSetMenuIndex += step;
+      if (currentSetMenuIndex >= setMenuData.length) currentSetMenuIndex = 0;
+      else if (currentSetMenuIndex < 0) currentSetMenuIndex = setMenuData.length - 1;
+      updateSetMenuModalView();
+    }
+
+    function updateSetMenuModalView() {
+      const menu = setMenuData[currentSetMenuIndex];
+      setMenuModalImg.src = menu.img;
+      setMenuModalImg.alt = menu.alt; // SEO 최적화 반영
+      setMenuModalName.innerText = menu.name;
+    }
+
+    // 배경 클릭 시 닫기
+    setMenuModal.addEventListener('click', (e) => {
+      if (e.target === setMenuModal) closeSetMenuModal();
+    });
+
+    // 키보드 방향키 및 ESC 닫기 제어
+    document.addEventListener('keydown', (e) => {
+      if (setMenuModal.classList.contains('visible')) {
+        if (e.key === 'Escape') closeSetMenuModal();
+        if (e.key === 'ArrowLeft') changeSetMenuSlide(-1);
+        if (e.key === 'ArrowRight') changeSetMenuSlide(1);
+      }
     });
   </script>
 </body>
