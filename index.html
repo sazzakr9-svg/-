@@ -225,18 +225,62 @@
       gap: 24px; margin: 48px 0;
     }
     .problem-card {
-      background: rgba(201,169,110,0.06);
-      border: 1px solid rgba(201,169,110,0.12);
-      border-radius: 8px; padding: 40px 28px;
-      text-align: center; transition: all 0.4s ease;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 75, 75, 0.1); /* 미세한 레드 테두리 */
+      border-radius: 12px;
+      padding: 60px 30px;
+      text-align: center;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 250px;
+      position: relative; /* 숫자 배치를 위함 */
+      overflow: hidden;
+      border-left: 4px solid #FF4B4B; /* 왼쪽 강렬한 경고 선 */
     }
-    .problem-card:hover { background: rgba(201,169,110,0.12); transform: translateY(-4px); }
-    .problem-card .icon { font-size: 2.2rem; margin-bottom: 16px; }
+
+    /* 배경에 깔리는 거대 숫자 */
+    .problem-card::after {
+      content: attr(data-num); /* HTML에서 숫자를 가져옴 */
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      font-size: 8rem;
+      font-weight: 900;
+      color: rgba(255, 75, 75, 0.05); /* 아주 은은한 레드 숫자 */
+      z-index: 0;
+      font-family: var(--sans);
+    }
+
+    .problem-card:hover {
+      background: rgba(255, 75, 75, 0.08); /* 호버 시 붉은 기운 */
+      transform: translateY(-10px) scale(1.02);
+      border-color: rgba(255, 75, 75, 0.5);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
     .problem-card h4 {
-      font-family: var(--serif); font-size: 1.15rem;
-      font-weight: 700; margin-bottom: 10px; color: #fff;
+      position: relative;
+      z-index: 1;
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      font-weight: 900;
+      margin-bottom: 20px;
+      color: #fff;
+      letter-spacing: -1px;
+      /* 네온 효과: 글자에서 미세하게 붉은 빛이 나옴 */
+      text-shadow: 0 0 15px rgba(255, 75, 75, 0.3); 
     }
-    .problem-card p { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+    .problem-card p {
+      position: relative;
+      z-index: 1;
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.8;
+      word-break: keep-all;
+    }
     .problem-bottom {
       font-family: var(--serif);
       font-size: clamp(1.2rem, 2.5vw, 1.8rem);
@@ -455,12 +499,37 @@
       gap: 60px; align-items: center; margin-top: 48px;
     }
     .pie-chart-wrap { display: flex; flex-direction: column; align-items: center; }
+    
+    /* 1. 크기를 살짝 줄임 (320px -> 280px) */
     .pie-chart { position: relative; width: 320px; height: 320px; }
-    .pie-chart svg { transform: rotate(-90deg); }
+    
+    /* 2. 그래프 회전 애니메이션 준비 (-270도에서 시작) */
+    .pie-chart svg { 
+      transform: rotate(-270deg); 
+      opacity: 0;
+      transition: transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 1s ease;
+    }
+    .pie-chart.animated svg {
+      transform: rotate(-90deg);
+      opacity: 1;
+    }
+
+    /* 3. 가운데 텍스트 페이드인 + 스케일업 애니메이션 준비 */
     .pie-chart-center {
       position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%, -50%); text-align: center;
+      /* 초기 상태: 살짝 아래에 있고 크기가 작음 */
+      transform: translate(-50%, -30%) scale(0.8); 
+      opacity: 0;
+      text-align: center;
+      transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition-delay: 0.3s; /* 그래프가 그려지기 시작한 직후 등장 */
     }
+    .pie-chart.animated .pie-chart-center {
+      /* 최종 상태: 정중앙, 원래 크기 */
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+    
     .pie-chart-center .amount {
       font-family: var(--serif); font-size: 2rem;
       font-weight: 900; color: var(--gold);
@@ -1232,20 +1301,17 @@
         <h2 class="section-title">고깃집, 정말 많습니다.<br />근데 왜 <span style="color:var(--gold)">망하는 매장</span>이 더 많을까요?</h2>
       </div>
       <div class="problem-cards">
-        <div class="problem-card reveal delay-1">
-          <div class="icon">&#x1F356;</div>
+        <div class="problem-card reveal delay-1" data-num="01">
           <h4>맛 비슷함</h4>
-          <p>어디서든 비슷한 맛, 비슷한 품질. 고객이 굳이 다시 찾을 이유가 없습니다.</p>
+          <p>어디서든 비슷한 맛, 비슷한 품질.<br />고객이 굳이 다시 찾을 이유가 없습니다.</p>
         </div>
-        <div class="problem-card reveal delay-2">
-          <div class="icon">&#x1F3E0;</div>
+        <div class="problem-card reveal delay-2" data-num="02">
           <h4>인테리어 비슷함</h4>
-          <p>비슷한 공간, 비슷한 분위기. 브랜드가 기억에 남지 않습니다.</p>
+          <p>비슷한 공간, 비슷한 분위기.<br />브랜드가 기억에 남지 않습니다.</p>
         </div>
-        <div class="problem-card reveal delay-3">
-          <div class="icon">&#x1F4B8;</div>
+        <div class="problem-card reveal delay-3" data-num="03">
           <h4>가격 경쟁 심함</h4>
-          <p>결국 가격만으로 승부하게 되고, 마진은 점점 줄어듭니다.</p>
+          <p>결국 가격만으로 승부하게 되고,<br />마진은 점점 줄어듭니다.</p>
         </div>
       </div>
       <p class="problem-bottom reveal">결국 <span>차이가 없는 시장</span>입니다.</p>
@@ -1277,7 +1343,11 @@
         <div class="diff-card reveal reveal-left delay-1">
           <div class="num">01</div>
           <h4>공간 설계</h4>
-          <p>인테리어가 아니라 매출 구조를 만듭니다. 좌석 배치, 동선, 조명까지 매출에 최적화된 공간을 설계합니다.</p>
+          <p>
+            인테리어가 아니라 매출 구조를 만듭니다.<br />
+            좌석 배치, 동선, 조명까지<br />
+            매출에 최적화된 공간을 설계합니다.
+          </p>
           <div class="diff-card-img interior-slider">
             <img src="interior3d1.jpeg" alt="인테리어 3D 1" class="slide active">
             <img src="interior3d2.jpeg" alt="인테리어 3D 2" class="slide">
@@ -1287,7 +1357,11 @@
         <div class="diff-card reveal delay-2">
           <div class="num">02</div>
           <h4>메뉴 구조</h4>
-          <p>고객이 고민 없이 주문하게 만듭니다. 선택지는 줄이고, 객단가는 자연스럽게 올립니다.</p>
+          <p>
+            고객이 고민 없이 주문하게 만듭니다.<br />
+            선택지는 줄이고,<br />
+            객단가는 자연스럽게 올립니다.
+          </p>
           <div class="diff-card-img">
             <img src="set-menu.jpg" alt="세트 메뉴" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
             <span class="placeholder-text" style="display:none;">세트 메뉴 구성 이미지</span>
@@ -1296,7 +1370,11 @@
         <div class="diff-card reveal reveal-right delay-3">
           <div class="num">03</div>
           <h4>브랜드 힘</h4>
-          <p>"고민 끝, 고명" — 고객에게 선택의 이유를 제공합니다. 기억되는 브랜드가 재방문을 만듭니다.</p>
+          <p>
+            "고민 끝, 고명"<br />
+            고객에게 선택의 이유를 제공합니다.<br />
+            기억되는 브랜드가 재방문을 만듭니다.
+          </p>
           <div class="diff-card-img review-slider">
             <img src="review1.png" alt="고객 리뷰 1" class="slide active">
             <img src="review2.png" alt="고객 리뷰 2" class="slide">
@@ -1397,8 +1475,8 @@
       <div class="revenue-grid">
         <div class="pie-chart-wrap reveal reveal-left">
           <div class="pie-chart" id="pieChart">
-            <svg viewBox="0 0 200 200" width="100%" height="100%">
-              <circle cx="100" cy="100" r="80" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="40" />
+            <svg viewBox="0 0 240 240" width="100%" height="100%">
+              <circle cx="120" cy="120" r="80" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="40" />
             </svg>
             <div class="pie-chart-center">
               <div class="amount">5,000<span style="font-size:0.5em">만원</span></div>
@@ -1475,7 +1553,7 @@
       <div class="ba-grid reveal">
         <div class="ba-card before">
           <div class="ba-card-img">
-            <img src="receipt-old.jpg" alt="기존 매장 영수증" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+            <img src="receipt1.jpg" alt="기존 매장 영수증" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
             <span class="placeholder-text" style="display:none;">기존 매장 영수증</span>
           </div>
           <div class="ba-label">BEFORE</div>
@@ -1485,7 +1563,7 @@
         <div class="ba-arrow">&#x27A1;</div>
         <div class="ba-card after">
           <div class="ba-card-img">
-            <img src="line-up-new.jpg" alt="고명 매장 줄서기" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+            <img src="restaurant1.jpg" alt="고명 매장 줄서기" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
             <span class="placeholder-text" style="display:none;">고명 매장 줄서기</span>
           </div>
           <div class="ba-label">AFTER</div>
@@ -1575,22 +1653,22 @@
         <div class="system-card reveal delay-1">
           <div class="sys-icon">&#x1F4D6;</div>
           <h4>오퍼레이션 매뉴얼</h4>
-          <p>오픈 전부터 운영까지 모든 과정이 표준화된 매뉴얼로 제공됩니다.</p>
+          <p>오픈 전부터 운영까지 모든 과정이<br />표준화된 매뉴얼로 제공됩니다.</p>
         </div>
         <div class="system-card reveal delay-2">
           <div class="sys-icon">&#x1F393;</div>
           <h4>교육 시스템</h4>
-          <p>경험 없이도 가능한 체계적인 교육. 조리부터 서비스까지 완벽 지원.</p>
+          <p>경험 없이도 가능한 체계적인 교육.<br />조리부터 서비스까지 완벽 지원.</p>
         </div>
         <div class="system-card reveal delay-3">
           <div class="sys-icon">&#x1F680;</div>
           <h4>오픈 지원</h4>
-          <p>상권 분석, 인테리어, 오픈 마케팅까지. 매장 오픈의 모든 과정을 함께합니다.</p>
+          <p>상권 분석, 인테리어, 오픈 마케팅까지.<br />매장 오픈의 모든 과정을 함께합니다.</p>
         </div>
         <div class="system-card reveal delay-4">
           <div class="sys-icon">&#x1F4E3;</div>
           <h4>마케팅 지원</h4>
-          <p>본사 차원의 브랜드 마케팅과 지역 맞춤 마케팅을 지속 지원합니다.</p>
+          <p>본사 차원의 브랜드 마케팅과<br />지역 맞춤 마케팅을 지속 지원합니다.</p>
         </div>
       </div>
     </div>
@@ -1946,7 +2024,7 @@
 
     function drawPieChart() {
       const svg = document.querySelector('#pieChart svg');
-      const r = 80, cx = 100, cy = 100;
+      const r = 80, cx = 120, cy = 120;
       const circumference = 2 * Math.PI * r;
       let offset = 0;
       svg.querySelectorAll('.pie-seg').forEach(el => el.remove());
@@ -1961,13 +2039,20 @@
         circle.setAttribute('fill', 'none');
         circle.setAttribute('stroke', d.color);
         circle.setAttribute('stroke-width', d.name === '순수익' ? '44' : '40');
-        circle.setAttribute('stroke-dasharray', `${segLength} ${circumference - segLength}`);
+        
+        // 초기 상태: 선의 길이를 0으로 설정 (애니메이션을 위함)
+        circle.setAttribute('stroke-dasharray', `0 ${circumference}`);
         circle.setAttribute('stroke-dashoffset', `${-offset}`);
-        circle.style.transition = 'stroke-dasharray 1s ease, stroke-dashoffset 1s ease';
+        circle.style.transition = 'stroke-dasharray 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        
+        // 실제 그려져야 할 목표 길이를 data 속성에 임시 저장
+        circle.dataset.dasharray = `${segLength} ${circumference - segLength}`;
+        
         svg.appendChild(circle);
         offset += segLength;
       });
 
+      // 범례 렌더링
       const legend = document.getElementById('pieLegend');
       legend.innerHTML = '';
       pieData.forEach(d => {
@@ -1980,6 +2065,28 @@
       });
     }
     drawPieChart();
+
+    // 스크롤 시 파이 차트 애니메이션 실행 옵저버
+    const pieChartEl = document.getElementById('pieChart');
+    if (pieChartEl) {
+      const pieObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // CSS 애니메이션 트리거 클래스 추가 (회전 및 텍스트 줌인)
+            pieChartEl.classList.add('animated');
+            
+            // SVG 선 채우기 애니메이션 실행
+            const segments = pieChartEl.querySelectorAll('.pie-seg');
+            segments.forEach(seg => {
+              seg.setAttribute('stroke-dasharray', seg.dataset.dasharray);
+            });
+            
+            pieObserver.unobserve(entry.target); // 한 번만 실행되도록
+          }
+        });
+      }, { threshold: 0.4 });
+      pieObserver.observe(pieChartEl);
+    }
 
     // ===== Diagnosis Test =====
     function toggleDiag(item) {
