@@ -1475,6 +1475,16 @@
             <span class="menu-slide-placeholder" style="display:none;">커플 세트</span>
             <div class="menu-slide-label">커플 세트</div>
           </div>
+          <div class="menu-slide">
+            <img src="menu-specialset.jpeg" alt="스페셜 세트" onerror="this.style.display='none'; this.parentElement.querySelector('.menu-slide-placeholder').style.display='block';" />
+            <span class="menu-slide-placeholder" style="display:none;">스페셜 세트</span>
+            <div class="menu-slide-label">스페셜 세트</div>
+          </div>
+          <div class="menu-slide">
+            <img src="menu-familyset.jpeg" alt="가족 세트" onerror="this.style.display='none'; this.parentElement.querySelector('.menu-slide-placeholder').style.display='block';" />
+            <span class="menu-slide-placeholder" style="display:none;">가족 세트</span>
+            <div class="menu-slide-label">가족 세트</div>
+          </div>
         </div>
       </div>
       <div class="carousel-dots" id="carouselDots">
@@ -1483,6 +1493,8 @@
         <div class="carousel-dot" data-index="2"></div>
         <div class="carousel-dot" data-index="3"></div>
         <div class="carousel-dot" data-index="4"></div>
+        <div class="carousel-dot" data-index="5"></div>
+        <div class="carousel-dot" data-index="6"></div>
       </div>
 
       <!-- Side dishes -->
@@ -1942,7 +1954,7 @@
       <span class="lightbox-prev" id="lightboxPrev">&#10094;</span>
       <span class="lightbox-next" id="lightboxNext">&#10095;</span>
     </div>
-    <div class="lightbox-overlay" id="setMenuModal">
+  </div> <div class="lightbox-overlay" id="setMenuModal">
     <div class="lightbox-content" style="flex-direction: column;">
       <span class="lightbox-close" onclick="closeSetMenuModal()">&times;</span>
       <div style="position: relative; display: flex; justify-content: center; align-items: center;">
@@ -1975,7 +1987,7 @@
     const track = document.getElementById('carouselTrack');
     const dots = document.querySelectorAll('.carousel-dot');
     let currentSlide = 0;
-    const totalSlides = 5;
+    const totalSlides = 7;
 
     function goToSlide(index) {
       currentSlide = index;
