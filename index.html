@@ -422,6 +422,20 @@
     .review-img-item .placeholder-text {
       color: var(--brown-light); font-size: 0.72rem; text-align: center; padding: 8px;
     }
+    /* 로고 이미지 스타일 */
+    .review-logo {
+      position: absolute;
+      top: 30px; /* 카드의 위쪽에서 30px */
+      right: 30px; /* 카드의 오른쪽에서 30px */
+      width: 60px; /* 너비 60px */
+      height: auto;
+      opacity: 0.7; /* 은은하게 (투명도 70%) */
+    }
+
+    /* 부모 카드에 position: relative; 추가 (이미 추가되어 있을 수도 있음) */
+    .diff-card {
+      position: relative;
+    }
     /* ===== 세트 메뉴 썸네일 & 팝업 스타일 ===== */
     .set-thumb {
       flex: 1;
@@ -1420,7 +1434,7 @@
             </div>
           </div>
         </div>
-        <div class="diff-card reveal reveal-right delay-3">
+        <div class="diff-card reveal reveal-right delay-3" style="position: relative;"> <img src="symbolrogo.png" alt="고명 심볼 로고" class="review-logo">
           <div class="num">03</div>
           <h4>브랜드 힘</h4>
           <p>
@@ -1432,6 +1446,8 @@
             <img src="review1.png" alt="고객 리뷰 1" class="slide active">
             <img src="review2.png" alt="고객 리뷰 2" class="slide">
             <img src="review3.png" alt="고객 리뷰 3" class="slide">
+            <img src="review4.png" alt="고객 리뷰 4" class="slide">
+            <img src="review5.png" alt="고객 리뷰 5" class="slide">
           </div>
         </div>
       </div>
@@ -2091,12 +2107,11 @@
     }
     // ===== PIE CHART (순수익 강조) =====
     const pieData = [
-      { name: '순수익',       value: 1800, pct: 36, color: '#C9A96E' },
-      { name: '본사 발주금액', value: 1350, pct: 27, color: '#8B6342' },
-      { name: '배달 대행비',   value: 500,  pct: 10, color: '#6B4226' },
-      { name: '인건비',       value: 550,  pct: 11, color: '#A0845C' },
-      { name: '임대료·공과금', value: 450,  pct: 9,  color: '#4A2C1A' },
-      { name: '기타비용',     value: 350,  pct: 7,  color: '#3D1F0E' },
+      { name: '순수익',        value: 2300, pct: 46, color: '#C9A96E' },
+      { name: '본사 발주금액', value: 1350, pct: 27, color: '#A0845C' },
+      { name: '인건비',        value: 550,  pct: 11, color: '#8B6342' },
+      { name: '임대료·공과금', value: 450,  pct: 9,  color: '#6B4226' },
+      { name: '기타비용',      value: 350,  pct: 7,  color: '#4A2C1A' }
     ];
 
     function drawPieChart() {
