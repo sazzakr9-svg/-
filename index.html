@@ -380,8 +380,10 @@
     /* 리뷰 자동 슬라이드 스타일 (비율 수정) */
     .review-slider {
       position: relative;
-      /* 카드 크기에 맞춰 비율 고정 (가로가 긴 비율로 수정) */
-      aspect-ratio: 16 / 9; /* 기존 9 / 16에서 수정 */
+      aspect-ratio: 1 / 1; /* 리뷰 영수증/텍스트가 잘 들어가도록 정방형으로 변경 */
+      background-color: #FAF6F0; /* 남는 여백이 어색하지 않게 배경색 통일 */
+      border-radius: 8px;
+      width: 100%;
     }
     .review-slider img.slide {
       position: absolute;
@@ -389,11 +391,11 @@
       left: 0;
       width: 100%;
       height: 100%;
-      /* 그릇(review-slider) 비율이 가로로 바뀌어 cover를 써도 전체가 잘 보입니다 */
-      object-fit: cover; 
+      /* 👇 cover(강제로 꽉 채워 자름)에서 contain(원본 비율 유지하며 프레임 안에 쏙 넣음)으로 변경 👇 */
+      object-fit: contain; 
       opacity: 0;
       transition: opacity 0.8s ease-in-out;
-      cursor: pointer; /* 클릭 가능하다는 표시 */
+      cursor: pointer;
     }
     .review-slider img.slide.active {
       opacity: 1;
