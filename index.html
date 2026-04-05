@@ -1336,8 +1336,8 @@
         <img src="logo.png" alt="고명 로고">
       </div>
       <h1>
-        매월 돼지농가에서 선별된<br />
-        <span class="highlight">프리미엄 생고기</span>만을 취급합니다.
+        100개의 식당을 하면서<br />
+        식당의 <span class="highlight">고정관념</span>을 깨다.
       </h1>
       <p class="hero-bottom-line">
         공간에 맛을 채워,<br />
@@ -1355,7 +1355,7 @@
     <div class="container">
       <div class="text-center reveal">
         <span class="section-tag">PROBLEM</span>
-        <h2 class="section-title">고깃집, 정말 많습니다.<br />근데 왜 <span style="color:var(--gold)">망하는 매장</span>이 더 많을까요?</h2>
+        <h2 class="section-title">고깃집, 정말 많습니다.<br />근데 왜 <span style="color:var(--gold)">망하는 매장</span>이<br />더 많을까요?</h2>
       </div>
       <div class="problem-cards">
         <div class="problem-card reveal delay-1" data-num="01">
@@ -1381,10 +1381,14 @@
       <div class="reveal">
         <span class="section-tag">SOLUTION</span>
         <h2 class="section-title" style="color:var(--brown-dark)">그래서 <span style="color:var(--gold)">고명</span>은<br />다르게 시작했습니다.</h2>
-        <p class="section-desc" style="margin:0 auto;">한 끼를 완성하는 브랜드라는 기준으로 매장을 설계합니다.</p>
+        <p class="section-desc" style="margin:0 auto;">한 끼를 완성하는 브랜드라는 기준으로<br />매장을 설계합니다.</p>
       </div>
       <div class="solution-box reveal">
-        <h3>공간, 메뉴, 운영까지<br /><span class="accent">처음부터 매출이 나게 설계합니다.</span></h3>
+        <h3>
+            공간, 메뉴, 운영까지<br />
+            <span class="accent" style="display: inline-block; font-size: 1.8em; font-weight: 900; line-height: 1.2; margin: 10px 0;">처음부터</span><br />
+            <span class="accent">매출이 나게 설계합니다.</span>
+          </h3>
       </div>
     </div>
   </section>
@@ -1425,8 +1429,8 @@
               <div class="thumb-name">커플세트</div>
             </div>
             <div class="set-thumb" onclick="openSetMenuModal(1)">
-              <img src="menu-specialset.jpeg" alt="고명 스페셜세트 - 특수부위와 삼겹살의 다채로운 구성">
-              <div class="thumb-name">스페셜세트</div>
+              <img src="menu-specialset.jpeg" alt="고명 특수부위 세트 - 특수부위와 삼겹살의 다채로운 구성">
+              <div class="thumb-name">특수부위 세트</div>
             </div>
             <div class="set-thumb" onclick="openSetMenuModal(2)">
               <img src="menu-familyset.jpeg" alt="고명 가족세트 - 온 가족이 넉넉하게 즐기는 푸짐한 돼지고기 메뉴">
@@ -1492,9 +1496,9 @@
             <div class="menu-slide-label">커플 세트</div>
           </div>
           <div class="menu-slide">
-            <img src="menu-specialset.jpeg" alt="스페셜 세트" onerror="this.style.display='none'; this.parentElement.querySelector('.menu-slide-placeholder').style.display='block';" />
-            <span class="menu-slide-placeholder" style="display:none;">스페셜 세트</span>
-            <div class="menu-slide-label">스페셜 세트</div>
+            <img src="menu-specialset.jpeg" alt="특수부위 세트" onerror="this.style.display='none'; this.parentElement.querySelector('.menu-slide-placeholder').style.display='block';" />
+            <span class="menu-slide-placeholder" style="display:none;">특수부위 세트</span>
+            <div class="menu-slide-label">특수부위 세트</div>
           </div>
           <div class="menu-slide">
             <img src="menu-familyset.jpeg" alt="가족 세트" onerror="this.style.display='none'; this.parentElement.querySelector('.menu-slide-placeholder').style.display='block';" />
@@ -1560,7 +1564,7 @@
               <circle cx="120" cy="120" r="80" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="40" />
             </svg>
             <div class="pie-chart-center">
-              <div class="amount">5,000<span style="font-size:0.5em">만원</span></div>
+              <div class="amount">4,000<span style="font-size:0.5em">만원</span></div>
               <div class="label">월 매출 평균</div>
             </div>
           </div>
@@ -1569,7 +1573,7 @@
         <div class="revenue-text reveal reveal-right">
           <h3>고명은 단순히 맛있는 집이 아니라<br /><span>수익이 나게 만들어진 구조</span>입니다.</h3>
           <div class="revenue-highlight-box">
-            <div class="hl-number">월 매출 평균 5,000만원</div>
+            <div class="hl-number">월 매출 평균 4,000만원</div>
             <div class="hl-label">현재 운영 매장 기준 실제 수익 데이터</div>
             <div class="hl-sub">
               <span>하루 5시간 운영</span>
@@ -2113,11 +2117,12 @@
     }
     // ===== PIE CHART (순수익 강조) =====
     const pieData = [
-      { name: '순수익',        value: 2300, pct: 46, color: '#C9A96E' },
-      { name: '본사 발주금액', value: 1350, pct: 27, color: '#A0845C' },
-      { name: '인건비',        value: 550,  pct: 11, color: '#8B6342' },
-      { name: '임대료·공과금', value: 450,  pct: 9,  color: '#6B4226' },
-      { name: '기타비용',      value: 350,  pct: 7,  color: '#4A2C1A' }
+      { name: '순수익',        value: 1210, pct: 30.25, color: '#C9A96E' },
+      { name: '본사 발주금액', value: 1350, pct: 33.75, color: '#A0845C' },
+      { name: '주류발주금액',  value: 120,  pct: 3,     color: '#8B6342' },
+      { name: '인건비',        value: 700,  pct: 17.5,  color: '#6B4226' },
+      { name: '임대료',        value: 270,  pct: 6.75,  color: '#4A2C1A' },
+      { name: '기타비용',      value: 350,  pct: 8.75,  color: '#3D1F0E' }
     ];
 
     function drawPieChart() {
@@ -2248,7 +2253,7 @@
     // ===== 세트 메뉴 클릭 팝업 슬라이드 로직 =====
     const setMenuData = [
       { name: '커플세트', img: 'menu-coupleset.jpeg', alt: '고명 커플세트 - 삼겹살과 목살 2인 추천 가성비 메뉴' },
-      { name: '스페셜세트', img: 'menu-specialset.jpeg', alt: '고명 스페셜세트 - 특수부위와 삼겹살의 다채로운 구성' },
+      { name: '특수부위 세트', img: 'menu-specialset.jpeg', alt: '고명 특수부위 세트 - 특수부위와 삼겹살의 다채로운 구성' },
       { name: '가족세트', img: 'menu-familyset.jpeg', alt: '고명 가족세트 - 온 가족이 넉넉하게 즐기는 푸짐한 돼지고기 메뉴' }
     ];
     
