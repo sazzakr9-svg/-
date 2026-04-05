@@ -1518,8 +1518,8 @@
         <h3>고명만의 특별한 <span>소스와 시그니처 디저트</span></h3>
         <div class="sides-grid">
           <div class="side-item reveal delay-1">
-            <div class="side-item-img">
-              <img src="sauce-set.jpg" alt="각종 소스" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+            <div class="side-item-img" onclick="openSauceModal()" style="cursor: pointer; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+              <img src="sauce-set.jpeg" alt="고명 특제 소스 세트 - 말돈소금, 와사비, 특제 젓갈 등" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
               <span class="placeholder-text" style="display:none;">소스 이미지</span>
             </div>
             <h5>각종 소스</h5>
@@ -1981,6 +1981,12 @@
       </div>
     </div>
   </div>
+  <div class="lightbox-overlay" id="sauceModal">
+    <div class="lightbox-content">
+      <span class="lightbox-close" onclick="closeSauceModal()">&times;</span>
+      <img src="sauce-set.jpeg" alt="고명 특제 소스 세트 상세 이미지" class="lightbox-img">
+    </div>
+  </div>
   </div>
   <!-- ===== JAVASCRIPT ===== -->
   <script>
@@ -2286,6 +2292,28 @@
         if (e.key === 'Escape') closeSetMenuModal();
         if (e.key === 'ArrowLeft') changeSetMenuSlide(-1);
         if (e.key === 'ArrowRight') changeSetMenuSlide(1);
+      }
+    });
+    // ===== 각종 소스 클릭 팝업 로직 =====
+    const sauceModal = document.getElementById('sauceModal');
+
+    function openSauceModal() {
+      if(sauceModal) sauceModal.classList.add('visible');
+    }
+
+    function closeSauceModal() {
+      if(sauceModal) sauceModal.classList.remove('visible');
+    }
+
+    if (sauceModal) {
+      sauceModal.addEventListener('click', (e) => {
+        if (e.target === sauceModal) closeSauceModal();
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && sauceModal && sauceModal.classList.contains('visible')) {
+        closeSauceModal();
       }
     });
   </script>
